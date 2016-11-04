@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 exports.devServer = function(options) {
   return {
@@ -68,6 +69,16 @@ exports.extractBundle = function(options) {
     plugins: [
       new webpack.optimize.CommonsChunkPlugin({
         names: [options.name, 'manifest']
+      })
+    ]
+  }
+}
+
+exports.clean = function(path) {
+  return {
+    plugins: [
+      new CleanWebpackPlugin([path], {
+        root: process.cwd()
       })
     ]
   }
