@@ -7,7 +7,10 @@ const parts = require('./libs/parts')
 
 const PATHS = {
   app: path.join(__dirname, 'app'),
-  style: path.join(__dirname, 'app', 'main.css'),
+  style: [
+    path.join(__dirname, 'node_modules', 'purecss'),
+    path.join(__dirname, 'app', 'main.css')
+  ],
   build: path.join(__dirname, 'build')
 }
 
@@ -51,7 +54,8 @@ switch(process.env.npm_lifecycle_event) {
       }),
       parts.clean(PATHS.build),
       parts.minify(),
-      parts.extractCSS(PATHS.style)
+      parts.extractCSS(PATHS.style),
+      parts.purifyCSS([PATHS.app])
     )
     break
   default:
