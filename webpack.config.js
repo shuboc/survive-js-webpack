@@ -41,6 +41,7 @@ switch(process.env.npm_lifecycle_event) {
         devtool: 'source-map',
         output: {
           path: PATHS.build,
+          publicPath: '/survive-js-webpack/',
           filename: '[name].[chunkhash].js',
           chunkFilename: '[chunkhash.js]'
         }
